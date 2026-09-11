@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estante Digital · Catálogo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+  :root{
+    --verde: #2F4538;
+    --creme: #F7F3E8;
+    --dourado: #C9A227;
+    --tinta: #1C1C1C;
+    --vinho: #8B3A3A;
+  }
+  body{
+    background: var(--creme);
+    color: var(--tinta);
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, .brand-title{
+    font-family: 'Lora', serif;
+  }
+  .navbar{
+    background: var(--verde) !important;
+    border-bottom: 3px solid var(--dourado);
+  }
+  .navbar-item, .navbar-link, .navbar-burger span{
+    color: var(--creme) !important;
+    font-family: 'Lora', serif;
+  }
+  .navbar-item:hover, .navbar-link:hover{
+    background: rgba(201,162,39,0.15) !important;
+    color: var(--dourado) !important;
+  }
+  .hero-estante{
+    background: linear-gradient(135deg, var(--verde) 0%, #3d5c48 100%);
+    color: var(--creme);
+    padding: 3.5rem 1.5rem;
+    border-bottom: 6px solid var(--dourado);
+  }
+  .hero-estante h1{
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+  .hero-estante p{
+    max-width: 42ch;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+  .section-acervo{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+  .filtro-box input{
+    border: 2px solid var(--verde);
+    box-shadow: none;
+  }
+  .filtro-box input:focus{
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 2px rgba(201,162,39,0.3);
+  }
+  table.table{
+    background: white;
+    border: 1px solid #ddd7c4;
+  }
+  table.table thead th{
+    background: var(--verde);
+    color: var(--creme);
+    font-family: 'Lora', serif;
+    font-weight: 600;
+    border: none;
+  }
+  table.table tbody tr:hover{
+    background: #fbf6e6;
+  }
+  .tag.disponivel{
+    background: #d7e6da;
+    color: #235233;
+    font-weight: 600;
+  }
+  .tag.emprestado{
+    background: #f0dede;
+    color: var(--vinho);
+    font-weight: 600;
+  }
+  .capa-emoji{
+    font-size: 1.4rem;
+  }
+  footer.rodape{
+    background: var(--verde);
+    color: var(--creme);
+    text-align: center;
+    padding: 1.5rem;
+    font-family: 'Lora', serif;
+  }
+  @media (max-width: 768px){
+    .hero-estante h1{ font-size: 1.8rem; }
+    table.table{ font-size: 0.85rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="menu principal">
+  <div class="navbar-brand">
+    <a class="navbar-item brand-title" href="#" style="font-weight:700; font-size:1.2rem;">📚 Estante Digital</a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menuPrincipal" id="burgerBtn">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="menuPrincipal" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="pessoa1-catalogo.html">Catálogo</a>
+      <a class="navbar-item" href="pessoa1-cadastro.html">Cadastrar livro</a>
+      <a class="navbar-item" href="#sobre">Sobre</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-estante">
+  <h1>Catálogo do acervo</h1>
+  <p>Consulte os livros disponíveis na biblioteca da nossa comunidade e veja o que já foi emprestado.</p>
+</section>
+
+<section class="section-acervo">
+  <div class="field filtro-box mb-5">
+    <label class="label" for="filtroTitulo">Buscar por título ou autor</label>
+    <div class="control">
+      <input class="input" type="text" id="filtroTitulo" placeholder="Digite para filtrar a lista...">
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="table is-fullwidth is-hoverable" id="tabelaAcervo">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Gênero</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="capa-emoji">📗</td>
+          <td>A Estrada</td>
+          <td>Cormac McCarthy</td>
+          <td>Ficção</td>
+          <td><span class="tag disponivel">Disponível</span></td>
+          <td><button class="button is-small btn-reservar" style="background:var(--verde); color:var(--creme);">Reservar</button></td>
+        </tr>
+        <tr>
+          <td class="capa-emoji">📕</td>
+          <td>Cem Anos de Solidão</td>
+          <td>Gabriel García Márquez</td>
+          <td>Realismo mágico</td>
+          <td><span class="tag emprestado">Emprestado</span></td>
+          <td><button class="button is-small" disabled>Indisponível</button></td>
+        </tr>
+        <tr>
+          <td class="capa-emoji">📘</td>
+          <td>Sapiens</td>
+          <td>Yuval Noah Harari</td>
+          <td>Não ficção</td>
+          <td><span class="tag disponivel">Disponível</span></td>
+          <td><button class="button is-small btn-reservar" style="background:var(--verde); color:var(--creme);">Reservar</button></td>
+        </tr>
+        <tr>
+          <td class="capa-emoji">📙</td>
+          <td>O Nome do Vento</td>
+          <td>Patrick Rothfuss</td>
+          <td>Fantasia</td>
+          <td><span class="tag disponivel">Disponível</span></td>
+          <td><button class="button is-small btn-reservar" style="background:var(--verde); color:var(--creme);">Reservar</button></td>
+        </tr>
+        <tr>
+          <td class="capa-emoji">📒</td>
+          <td>A Revolução dos Bichos</td>
+          <td>George Orwell</td>
+          <td>Sátira política</td>
+          <td><span class="tag emprestado">Emprestado</span></td>
+          <td><button class="button is-small" disabled>Indisponível</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p id="msgVazio" class="has-text-centered" style="display:none; color: var(--vinho);">Nenhum livro encontrado para essa busca.</p>
+</section>
+
+<section id="sobre" class="section-acervo" style="border-top: 1px solid #ddd7c4; padding-top: 2rem;">
+  <h2 style="color: var(--verde); font-size: 1.5rem; margin-bottom: 0.75rem;">Sobre o projeto</h2>
+  <p style="max-width: 65ch; line-height: 1.6;">
+    A Estante Digital é um projeto de biblioteca comunitária criado como trabalho escolar,
+    com o objetivo de organizar o acervo de livros disponíveis para empréstimo e permitir
+    que qualquer pessoa consulte e reserve títulos de forma simples.
+  </p>
+</section>
+
+<footer class="rodape">
+  <p>Estante Digital — projeto de biblioteca comunitária · Trabalho em dupla</p>
+</footer>
+
+<script>
+  document.getElementById('burgerBtn').addEventListener('click', function () {
+    this.classList.toggle('is-active');
+    document.getElementById('menuPrincipal').classList.toggle('is-active');
+  });
+
+  const tbody = document.querySelector('#tabelaAcervo tbody');
+  const livrosSalvos = JSON.parse(localStorage.getItem('estanteDigitalLivros') || '[]');
+
+  livrosSalvos.forEach(livro => {
+    const linha = document.createElement('tr');
+    linha.dataset.id = livro.id;
+
+    const statusHtml = livro.reservado
+      ? '<span class="tag emprestado">Reservado</span>'
+      : (livro.disponivel
+          ? '<span class="tag disponivel">Disponível</span>'
+          : '<span class="tag emprestado">Indisponível</span>');
+
+    const acaoHtml = livro.reservado
+      ? '<button class="button is-small" disabled style="background:#bbb;">Reservado ✓</button>'
+      : (livro.disponivel
+          ? '<button class="button is-small btn-reservar" style="background:var(--verde); color:var(--creme);">Reservar</button>'
+          : '<button class="button is-small" disabled>Indisponível</button>');
+
+    linha.innerHTML = `
+      <td class="capa-emoji">📓</td>
+      <td>${livro.titulo}</td>
+      <td>${livro.autor}</td>
+      <td>${livro.genero}</td>
+      <td>${statusHtml}</td>
+      <td>${acaoHtml}</td>
+    `;
+    tbody.appendChild(linha);
+  });
+
+  const filtro = document.getElementById('filtroTitulo');
+  const linhas = document.querySelectorAll('#tabelaAcervo tbody tr');
+  const msgVazio = document.getElementById('msgVazio');
+
+  filtro.addEventListener('input', function () {
+    const termo = this.value.trim().toLowerCase();
+    let visiveis = 0;
+    linhas.forEach(linha => {
+      const texto = linha.textContent.toLowerCase();
+      const corresponde = texto.includes(termo);
+      linha.style.display = corresponde ? '' : 'none';
+      if (corresponde) visiveis++;
+    });
+    msgVazio.style.display = visiveis === 0 ? 'block' : 'none';
+  });
+
+  document.querySelectorAll('.btn-reservar').forEach(botao => {
+    botao.addEventListener('click', function () {
+      const linha = this.closest('tr');
+      const status = linha.querySelector('.tag');
+
+      status.textContent = 'Reservado';
+      status.classList.remove('disponivel');
+      status.classList.add('emprestado');
+
+      this.textContent = 'Reservado ✓';
+      this.disabled = true;
+      this.style.background = '#bbb';
+
+      const id = linha.dataset.id;
+      if (id) {
+        const lista = JSON.parse(localStorage.getItem('estanteDigitalLivros') || '[]');
+        const livro = lista.find(l => String(l.id) === id);
+        if (livro) {
+          livro.reservado = true;
+          localStorage.setItem('estanteDigitalLivros', JSON.stringify(lista));
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

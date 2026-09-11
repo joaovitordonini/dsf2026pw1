@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estante Digital · Cadastrar livro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+<style>
+  :root{
+    --verde: #2F4538;
+    --creme: #F7F3E8;
+    --dourado: #C9A227;
+    --tinta: #1C1C1C;
+    --vinho: #8B3A3A;
+  }
+  body{ background: var(--creme); color: var(--tinta); font-family:'Inter', sans-serif; }
+  h1, .brand-title{ font-family:'Lora', serif; }
+  .navbar{ background: var(--verde) !important; border-bottom: 3px solid var(--dourado); }
+  .navbar-item, .navbar-link, .navbar-burger span{ color: var(--creme) !important; font-family:'Lora', serif; }
+  .navbar-item:hover, .navbar-link:hover{ background: rgba(201,162,39,0.15) !important; color: var(--dourado) !important; }
+  .hero-form{
+    background: linear-gradient(135deg, var(--verde) 0%, #3d5c48 100%);
+    color: var(--creme);
+    padding: 3rem 1.5rem;
+    border-bottom: 6px solid var(--dourado);
+    text-align: center;
+  }
+  .form-wrap{
+    max-width: 640px;
+    margin: -2rem auto 4rem;
+    background: white;
+    border-radius: 4px;
+    padding: 2rem;
+    box-shadow: 0 6px 20px rgba(47,69,56,0.15);
+    border-top: 5px solid var(--dourado);
+  }
+  .label{ font-family:'Lora', serif; color: var(--verde); }
+  .input, .select select, .textarea{
+    border: 2px solid #ddd7c4;
+  }
+  .input:focus, .select select:focus, .textarea:focus{
+    border-color: var(--dourado);
+    box-shadow: 0 0 0 2px rgba(201,162,39,0.3);
+  }
+  .btn-cadastrar{
+    background: var(--verde);
+    color: var(--creme);
+    border: none;
+    font-family: 'Lora', serif;
+  }
+  .btn-cadastrar:hover{ background: #24362b; color: var(--dourado); }
+  .modal-card-head{
+    background: var(--verde);
+    border-bottom: 3px solid var(--dourado);
+  }
+  .modal-card-title{ color: var(--creme); font-family:'Lora', serif; }
+  .modal-card-body dt{ font-weight: 600; color: var(--verde); }
+  footer.rodape{ background: var(--verde); color: var(--creme); text-align:center; padding:1.5rem; font-family:'Lora', serif; }
+  .campo-erro{ color: var(--vinho); font-size: 0.85rem; display:none; margin-top:0.25rem; }
+</style>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="menu principal">
+  <div class="navbar-brand">
+    <a class="navbar-item brand-title" href="#" style="font-weight:700; font-size:1.2rem;">📚 Estante Digital</a>
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="menuPrincipal" id="burgerBtn">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div id="menuPrincipal" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="pessoa1-catalogo.html">Catálogo</a>
+      <a class="navbar-item" href="pessoa1-cadastro.html">Cadastrar livro</a>
+      <a class="navbar-item" href="pessoa1-catalogo.html#sobre">Sobre</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero-form">
+  <h1 style="font-size:2.1rem; font-weight:700;">Cadastrar novo livro</h1>
+  <p>Adicione um título ao acervo da nossa biblioteca comunitária.</p>
+</section>
+
+<section class="form-wrap">
+  <form id="formLivro" novalidate>
+    <div class="field">
+      <label class="label" for="titulo">Título *</label>
+      <div class="control">
+        <input class="input" type="text" id="titulo" required>
+      </div>
+      <p class="campo-erro" id="erroTitulo">Informe o título do livro.</p>
+    </div>
+
+    <div class="field">
+      <label class="label" for="autor">Autor *</label>
+      <div class="control">
+        <input class="input" type="text" id="autor" required>
+      </div>
+      <p class="campo-erro" id="erroAutor">Informe o autor.</p>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <div class="field">
+          <label class="label" for="genero">Gênero</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="genero">
+                <option>Ficção</option>
+                <option>Não ficção</option>
+                <option>Fantasia</option>
+                <option>Sátira política</option>
+                <option>Biografia</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label" for="ano">Ano de publicação</label>
+          <div class="control">
+            <input class="input" type="number" id="ano" min="1500" max="2026" placeholder="Ex: 1998">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="sinopse">Sinopse</label>
+      <div class="control">
+        <textarea class="textarea" id="sinopse" rows="3" placeholder="Um breve resumo do livro..."></textarea>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="checkbox">
+        <input type="checkbox" id="disponivel" checked>
+        Disponível para empréstimo imediato
+      </label>
+    </div>
+
+    <div class="field mt-5">
+      <button type="submit" class="button btn-cadastrar is-fullwidth">Cadastrar livro</button>
+    </div>
+  </form>
+</section>
+
+<footer class="rodape">
+  <p>Estante Digital — projeto de biblioteca comunitária · Trabalho em dupla</p>
+</footer>
+
+<div class="modal" id="modalConfirmacao">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Livro cadastrado com sucesso ✅</p>
+      <button class="delete" aria-label="close" id="fecharModalX"></button>
+    </header>
+    <section class="modal-card-body">
+      <dl>
+        <dt>Título:</dt><dd id="resTitulo"></dd>
+        <dt>Autor:</dt><dd id="resAutor"></dd>
+        <dt>Gênero:</dt><dd id="resGenero"></dd>
+        <dt>Ano:</dt><dd id="resAno"></dd>
+        <dt>Disponível:</dt><dd id="resDisponivel"></dd>
+      </dl>
+      <p style="margin-top:1rem; font-size:0.9rem; color: var(--verde);">
+        📌 Este livro já foi salvo e vai aparecer na página de <a href="pessoa1-catalogo.html" style="color:var(--vinho); text-decoration:underline;">Catálogo</a>.
+      </p>
+    </section>
+    <footer class="modal-card-foot" style="justify-content:flex-end;">
+      <button class="button btn-cadastrar" id="fecharModalBtn">Fechar</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+  document.getElementById('burgerBtn').addEventListener('click', function () {
+    this.classList.toggle('is-active');
+    document.getElementById('menuPrincipal').classList.toggle('is-active');
+  });
+
+  const modal = document.getElementById('modalConfirmacao');
+  function abrirModal(){ modal.classList.add('is-active'); }
+  function fecharModal(){ modal.classList.remove('is-active'); }
+  document.getElementById('fecharModalX').addEventListener('click', fecharModal);
+  document.getElementById('fecharModalBtn').addEventListener('click', fecharModal);
+  document.querySelector('.modal-background').addEventListener('click', fecharModal);
+  document.getElementById('formLivro').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const titulo = document.getElementById('titulo');
+    const autor = document.getElementById('autor');
+    let valido = true;
+
+    if (titulo.value.trim() === '') {
+      document.getElementById('erroTitulo').style.display = 'block';
+      valido = false;
+    } else {
+      document.getElementById('erroTitulo').style.display = 'none';
+    }
+
+    if (autor.value.trim() === '') {
+      document.getElementById('erroAutor').style.display = 'block';
+      valido = false;
+    } else {
+      document.getElementById('erroAutor').style.display = 'none';
+    }
+
+    if (!valido) return;
+
+    const novoLivro = {
+      id: Date.now(),
+      titulo: titulo.value.trim(),
+      autor: autor.value.trim(),
+      genero: document.getElementById('genero').value,
+      ano: document.getElementById('ano').value || 'Não informado',
+      disponivel: document.getElementById('disponivel').checked,
+      reservado: false
+    };
+
+    const livrosSalvos = JSON.parse(localStorage.getItem('estanteDigitalLivros') || '[]');
+    livrosSalvos.push(novoLivro);
+    localStorage.setItem('estanteDigitalLivros', JSON.stringify(livrosSalvos));
+
+    document.getElementById('resTitulo').textContent = titulo.value;
+    document.getElementById('resAutor').textContent = autor.value;
+    document.getElementById('resGenero').textContent = document.getElementById('genero').value;
+    document.getElementById('resAno').textContent = document.getElementById('ano').value || 'Não informado';
+    document.getElementById('resDisponivel').textContent = document.getElementById('disponivel').checked ? 'Sim' : 'Não';
+
+    abrirModal();
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
